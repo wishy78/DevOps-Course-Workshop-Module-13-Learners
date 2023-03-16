@@ -5,6 +5,7 @@ from pytz import utc, timezone
 
 local_timezone = timezone("Europe/London")
 
+FAILD = 'Faild'
 COMPLETE = 'Complete'
 QUEUED = 'Queued'
 
@@ -40,3 +41,7 @@ class Order(db.Model):
     def set_as_processed(self):
         self.date_processed = datetime.now(tz=utc)
         self.status = COMPLETE
+
+    def set_as_Faild(self):
+        self.date_processed = datetime.now(tz=utc)
+        self.status = FAILD

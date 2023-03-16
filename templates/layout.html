@@ -68,6 +68,7 @@
           <li
             class="list-group-item
             {% if order.status == 'Complete' %} list-group-item-success
+            {% elseif order.status == 'Failed'  %} list-group-item-danger
             {% else %} list-group-item-warning
             {% endif %}"
           >
