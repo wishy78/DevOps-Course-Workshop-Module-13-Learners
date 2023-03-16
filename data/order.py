@@ -5,7 +5,7 @@ from pytz import utc, timezone
 
 local_timezone = timezone("Europe/London")
 
-FAILD = 'Faild'
+FAILD = 'Failed'
 COMPLETE = 'Complete'
 QUEUED = 'Queued'
 
