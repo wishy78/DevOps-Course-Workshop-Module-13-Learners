@@ -8,7 +8,7 @@ from scheduled_jobs import initialise_scheduled_jobs
 from products import create_product_download
 import requests
 from flask import Flask
-from opencensus.ext.azure.trace_exporter import AzureExporter
+from opencensus.ext.azure.log_exporter import AzureLogHandler
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 from opencensus.trace.samplers import ProbabilitySampler
 
@@ -19,6 +19,7 @@ middleware = FlaskMiddleware(
     sampler=ProbabilitySampler(rate=1.0),
 )
 app.config.from_object(Config)
+app.logger.addHandler(AzureLogHandler())
 
 initialise_database(app)
 initialise_scheduled_jobs(app)
