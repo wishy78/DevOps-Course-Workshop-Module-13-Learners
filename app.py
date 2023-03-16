@@ -7,7 +7,17 @@ from data.database import initialise_database, add_order, clear_orders, count_or
 from scheduled_jobs import initialise_scheduled_jobs
 from products import create_product_download
 import requests
+from flask import Flask
+from opencensus.ext.azure.trace_exporter import AzureExporter
+from opencensus.ext.flask.flask_middleware import FlaskMiddleware
+from opencensus.trace.samplers import ProbabilitySampler
+
+
 app = Flask(__name__)
+middleware = FlaskMiddleware(
+    app,
+    sampler=ProbabilitySampler(rate=1.0),
+)
 app.config.from_object(Config)
 
 initialise_database(app)
